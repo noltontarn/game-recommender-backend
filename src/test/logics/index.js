@@ -1,17 +1,16 @@
-const { getDb } = require('../../../helpers/mongodb')
+const { getDb } = require('../../helpers/mongodb')
 
 async function insertTest(data) {
     const {
         name,
         description
     } = data
-    console.log('inserting')
     const db = getDb()
-    await db.collection('test').insertOne({
+    const id  = await db.collection('test').insertOne({
         name: name,
         description: description
     })
-    console.log('inserted')
+    return id
 }
 
 async function getTest(name) {
